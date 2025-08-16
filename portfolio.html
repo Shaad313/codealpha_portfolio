@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tahseen raza</title>
+  <meta name="description" content="Personal portfolio of Your Name: projects, skills, resume, and contact information." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --panel: #111827;
+      --panel-2:#0f1624;
+      --text: #e5e7eb;
+      --muted:#9ca3af;
+      --brand:#60a5fa;  /* sky-400 */
+      --brand-2:#a78bfa; /* violet-400 */
+      --ok:#34d399;      /* emerald-400 */
+      --warn:#f59e0b;    /* amber-500 */
+      --danger:#f87171;  /* red-400 */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,.25);
+      --maxw: 1150px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:radial-gradient(1000px 600px at 15% -10%, #122036 0%, rgba(17,24,39,0) 60%),
+                         radial-gradient(1200px 800px at 110% 10%, #1a1032 0%, rgba(17,24,39,0) 60%),
+                         var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--maxw); margin-inline:auto; padding: 0 20px}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
+      background:linear-gradient(180deg, rgba(11,15,23,.9) 0%, rgba(11,15,23,.65) 100%);
+      border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand-logo{
+      width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid; place-items:center; box-shadow:var(--shadow-sm);
+      color:#0b0f17; font-size:18px; font-weight:900;
+    }
+    nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    nav a{padding:8px 12px; border-radius:10px; color:var(--muted); font-weight:600}
+    nav a:hover, nav a:focus{color:var(--text); background:rgba(255,255,255,.06)}
+    .menu-btn{display:none; border:1px solid rgba(255,255,255,.1); background:transparent; color:var(--text); border-radius:12px; padding:8px 10px}
+
+    /* Hero */
+    .hero{padding:80px 0 40px}
+    .hero-inner{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center}
+    .badge{display:inline-flex; gap:8px; align-items:center; background:rgba(96,165,250,.12); color:var(--brand); border:1px solid rgba(96,165,250,.35); padding:8px 12px; border-radius:999px; font-weight:700}
+    .title{font-size:clamp(28px, 4vw, 52px); margin:12px 0 8px; line-height:1.05}
+    .subtitle{font-size:clamp(16px, 1.6vw, 20px); color:var(--muted); max-width:60ch}
+    .cta{display:flex; gap:12px; margin-top:22px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; font-weight:700; border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow-sm)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%); color:#0b0f17}
+    .btn.ghost{background:rgba(255,255,255,.04); color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+
+    /* Sections */
+    section{padding:70px 0; scroll-margin-top:110px}
+    .section-head{display:flex; align-items:end; justify-content:space-between; margin-bottom:22px}
+    .section-title{font-size:clamp(22px, 3vw, 32px)}
+    .section-sub{color:var(--muted)}
+
+    /* About */
+    .about{display:grid; grid-template-columns: .9fr 1.1fr; gap:24px}
+    .about-card{background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:20px}
+    .kpis{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:14px}
+    .kpi{background:var(--panel-2); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px; text-align:center}
+    .kpi strong{font-size:22px}
+
+    /* Skills */
+    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:var(--text); font-weight:600}
+
+    /* Projects */
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:16px; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px); box-shadow:var(--shadow)}
+    .thumb{aspect-ratio:16/9; background:linear-gradient(135deg, rgba(96,165,250,.2), rgba(167,139,250,.2)); display:grid; place-items:center; color:#111827; font-weight:900; letter-spacing:.5px}
+    .card-body{padding:14px 14px 16px}
+    .pill{display:inline-flex; align-items:center; gap:8px; font-size:12px; color:var(--muted)}
+
+    /* Resume */
+    .resume{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
+    .timeline{display:grid; gap:12px}
+    .item{background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px}
+    .item h4{margin:6px 0 4px}
+    .item small{color:var(--muted)}
+
+    /* Contact */
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; padding:12px 14px; color:var(--text); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:12px}
+    input:focus, textarea:focus{outline:none; border-color:var(--brand)}
+    .note{color:var(--muted); font-size:14px}
+
+    /* Footer */
+    footer{padding:30px 0 60px; color:var(--muted)}
+    .socials{display:flex; gap:10px}
+    .icon-btn{width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08)}
+
+    /* Reveal animations */
+    .reveal{opacity:0; transform:translateY(16px); transition: opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 950px){
+      .grid{grid-template-columns:repeat(2, 1fr)}
+      .hero-inner, .about, .resume{grid-template-columns:1fr}
+    }
+    @media (max-width: 700px){
+      nav ul{display:none}
+      .menu-btn{display:inline-flex}
+      .grid{grid-template-columns:1fr}
+      .hero{padding-top:60px}
+    }
+    /* Accessibility: respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{transition:none}
+      .card, .btn{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Homepage">
+        <span class="brand-logo" aria-hidden="true">YN</span>
+        <span>Tahseen raza</span>
+      </a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav aria-label="Main">
+        <ul id="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">🚀 Open to work</span>
+        <h1 class="title">Hi, I’m <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Tahseen raza</span> — Frontend Developer</h1>
+        <p class="subtitle">I craft clean, accessible, and fast web experiences. Here are a few things I’ve built and the technologies I work with.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects →</a>
+          <a class="btn ghost" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-card reveal" role="img" aria-label="Decorative profile card">
+        <img src="https://avatars.githubusercontent.com/u/583231?v=4" alt="Your profile photo" style="width:100%; border-radius:12px; aspect-ratio:1/1; object-fit:cover;" />
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px">
+          <div class="kpi"><strong>3+</strong><div>Years</div></div>
+          <div class="kpi"><strong>12</strong><div>Projects</div></div>
+          <div class="kpi"><strong>5</strong><div>Clients</div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section id="about" class="container">
+    <div class="section-head">
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">Who I am & what I do</p>
+    </div>
+    <div class="about">
+      <article class="about-card reveal">
+        <h3>👋 Hello!</h3>
+        <p>I’m a frontend developer focused on building delightful, accessible UIs. I enjoy turning complex problems into simple, beautiful interfaces.</p>
+        <p>When I’m not coding, I learn new design tools, write tech notes, or tweak side projects.</p>
+      </article>
+      <aside class="about-card reveal">
+        <h3>Highlights</h3>
+        <ul>
+          <li>Built a reactive dashboard used by 5k+ users</li>
+          <li>Improved Core Web Vitals, cutting LCP from 3.4s → 1.8s</li>
+          <li>Mentored juniors on React and accessibility</li>
+        </ul>
+        <div class="kpis">
+          <div class="kpi"><strong>98</strong><div>Lighthouse</div></div>
+          <div class="kpi"><strong>AA</strong><div>WCAG</div></div>
+          <div class="kpi"><strong>~30%</strong><div>Faster</div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-sub">Tech I use day-to-day</p>
+    </div>
+    <div class="chips reveal">
+      <span class="chip">HTML5</span>
+      <span class="chip">CSS3 / Sass</span>
+      <span class="chip">JavaScript (ES6+)</span>
+      <span class="chip">React</span>
+      <span class="chip">Tailwind</span>
+      <span class="chip">Node.js</span>
+      <span class="chip">Git & GitHub</span>
+      <span class="chip">Accessibility (a11y)</span>
+      <span class="chip">Testing</span>
+      <span class="chip">figma</span>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">A few things I’ve shipped</p>
+    </div>
+    <div class="grid">
+      <article class="card reveal">
+        <div class="thumb">Project 1</div>
+        <div class="card-body">
+          <h3>Interactive Dashboard</h3>
+          <p class="pill">Fullstack</p>
+          <p>A data visualization dashboard with real-time charts and role-based access.</p>
+          <p><a href="#" class="btn ghost" style="padding:8px 10px">Live</a> <a href="#" class="btn ghost" style="padding:8px 10px">Code</a></p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb">Project Two</div>
+        <div class="card-body">
+          <h3>Portfolio Generator</h3>
+          <p class="pill">Node • EJS • Tailwind</p>
+          <p>CLI tool that scaffolds a portfolio site with your projects and blog posts.</p>
+          <p><a href="#" class="btn ghost" style="padding:8px 10px">Live</a> <a href="#" class="btn ghost" style="padding:8px 10px">Code</a></p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="thumb">Project Three</div>
+        <div class="card-body">
+          <h3>Image Gallery</h3>
+          <p class="pill">HTML • CSS • JS</p>
+          <p>Responsive gallery with lightbox and keyboard navigation.</p>
+          <p><a href="#" class="btn ghost" style="padding:8px 10px">Live</a> <a href="#" class="btn ghost" style="padding:8px 10px">Code</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Resume</h2>
+      <p class="section-sub">Experience & education</p>
+    </div>
+    <div class="resume">
+      <div class="timeline">
+        <div class="item reveal">
+          <small>2023 — Present</small>
+          <h4>Frontend Engineer • Company Name</h4>
+          <p>Owned UI for analytics suite, collaborated with product & design, and improved performance.</p>
+        </div>
+        <div class="item reveal">
+          <small>2021 — 2023</small>
+          <h4>Junior Developer • Agency</h4>
+          <p>Built marketing sites, automation scripts, and components library.</p>
+        </div>
+      </div>
+      <aside class="item reveal">
+        <h4>Download Resume</h4>
+        <p class="note">Keep a PDF (1–2 pages) in your repo and link it here.</p>
+        <a class="btn primary" href="./Resume.pdf" download>⬇️ Resume.pdf</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <div class="section-head">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Let’s build something great</p>
+    </div>
+    <div class="grid" style="grid-template-columns:1.1fr .9fr">
+      <form class="reveal" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
+        <label>
+          <span>Name</span>
+          <input required name="name" autocomplete="name" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input required type="email" name="email" autocomplete="email" />
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea required name="message" rows="5"></textarea>
+        </label>
+        <button class="btn primary" type="submit">Send Message</button>
+        <p class="note">Prefer email? <a href="mailto:you@example.com">razatahseen51@gmail.com</a></p>
+      </form>
+      <aside class="reveal about-card">
+        <h3>Elsewhere</h3>
+        <div class="socials">
+          <a class="icon-btn" href="#" aria-label="GitHub">🐙</a>
+          <a class="icon-btn" href="#" aria-label="www.linkedin.com/in/
+tahseen-raza-669937216
+Vanity URL name
+">in</a>
+          <a class="icon-btn" href="#" aria-label="Twitter">𝕏</a>
+          <a class="icon-btn" href="#" aria-label="CodePen">⌗</a>
+        </div>
+        <p class="note" style="margin-top:10px">Update the links above to your profiles.</p>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
+      <a href="#top" class="btn ghost">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const menu = document.getElementById('menu');
+    menuBtn?.addEventListener('click', () => {
+      const open = menu.style.display === 'flex';
+      menu.style.display = open ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.gap = '10px';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // IntersectionObserver reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll offset fix for older browsers (optional)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        const target = document.querySelector(id);
+        if(!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
